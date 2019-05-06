@@ -44,8 +44,6 @@ public class Cracker {
 	private static CountDownLatch latch;
 	private String hash;
 	
-	
-	
 	public void Crack(int maxLength , int numberOfThreads, String hash) {
 		this.hash = hash;
 		latch = new CountDownLatch(numberOfThreads);
@@ -57,8 +55,8 @@ public class Cracker {
 				finish = CHARS.length - 1;
 			}else finish = (i + 1) * len - 1;
 
-			Worker thread = new Worker(start , finish , maxLength);
-			thread.start();
+			Worker worker = new Worker(start , finish , maxLength);
+			worker.start();
 		}
 	}
 	

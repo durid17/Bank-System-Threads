@@ -1,4 +1,3 @@
-import javax.sql.rowset.spi.SyncResolver;
 
 public class Account {
 	private int ID;
@@ -11,12 +10,12 @@ public class Account {
 		this.transactions = 0;
 	}
 	
-	public synchronized void transMoneyTo(int money) {
+	public synchronized void deposit(int money) {
 		this.balance += money;
 		transactions++;
 	}
 	
-	public synchronized void transMoneyFrom(int money) {
+	public synchronized void withdraw(int money) {
 		this.balance -= money;
 		transactions++;
 	}

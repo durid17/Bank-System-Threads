@@ -26,8 +26,8 @@ public class Bank {
 						break;
 					}
 					int money = trans.getMoney();
-					accs[trans.getIDFrom()].transMoneyFrom(money);
-					accs[trans.getIDTo()].transMoneyTo(money);
+					accs[trans.getIDFrom()].withdraw(money);
+					accs[trans.getIDTo()].deposit(money);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -48,12 +48,7 @@ public class Bank {
 		}
 	}
 	
-	public static void main(String[] args) {
-		String filename = "/home/demetre/Desktop/eclipse-workspace/hw4Threads/HW4 Starter Code/" + args[0];
-		
-		int threadNum = Integer.parseInt(args[1]);
-		Bank bank = new Bank(threadNum);
-		
+	public void makeTransactions(String filename , int threadNum) {
 		try {
 			Scanner sc = new Scanner(new File(filename));
 			while(sc.hasNextLine()) {
@@ -80,6 +75,13 @@ public class Bank {
 		for(int i = 0 ; i < NUM_OF_ACCOUNTS ; i++) {
 			System.out.println(accs[i]);
 		}
+	}
+	
+	public static void main(String[] args) {
+		String filename = "/home/demetre/Desktop/eclipse-workspace/hw4Threads/HW4 Starter Code/" + args[0];
 		
+		int threadNum = Integer.parseInt(args[1]);
+		Bank bank = new Bank(threadNum);
+		bank.makeTransactions(filename, threadNum);
 	}
 }
