@@ -18,6 +18,7 @@ public class Account {
 	public synchronized void withdraw(int money) {
 		this.balance -= money;
 		transactions++;
+		
 	}
 	
 	@Override
